@@ -1,0 +1,39 @@
+{
+  "name": "highlighter.pro",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "description": "Highlight text and add notes",
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "Click to open the side panel"
+  },
+  "icons": {
+    "16": "images/highlighter-green-16.png",
+    "128": "images/highlighter-green-128.png"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "permissions": [
+    "sidePanel",
+    "contextMenus",
+    "tabs",
+    "activeTab",
+    "storage",
+    "unlimitedStorage",
+    "downloads"
+  ]
+}
