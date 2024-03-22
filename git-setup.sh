@@ -45,3 +45,7 @@ git push --set-upstream github main
 # git push --set-upstream origin main
 
 git config --list --local;
+
+# tag
+#
+git tag -a v1.0.0 -m 'version 1.0.0'
