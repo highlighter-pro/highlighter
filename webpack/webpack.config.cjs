@@ -7,8 +7,8 @@ const CopyPlugin = require("copy-webpack-plugin");
 const path = require('path');
 
 module.exports = {
-    // mode: "production", // https://webpack.js.org/configuration/mode/ TODO: change to 'production' in production
-    mode: "development", // https://webpack.js.org/configuration/mode/
+    mode: "production", // https://webpack.js.org/configuration/mode/ // TODO: change to 'production' in production
+    // mode: "development", // https://webpack.js.org/configuration/mode/
     // https://webpack.js.org/configuration/devtool/
     devtool: 'source-map',
     // devtool: 'cheap-module-source-map',
