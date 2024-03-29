@@ -1,8 +1,10 @@
 import React from "react";
+import saveStorageToFile from "../storage/saveStorageToFile";
 
 const SaveStorageToFileButton: React.FC = () => {
 
     const onClickHandler = () => {
+        saveStorageToFile();
     }
 
     return (
@@ -13,7 +15,6 @@ const SaveStorageToFileButton: React.FC = () => {
         >
             Save backup
         </button>
-
     );
 
 };
