@@ -1,6 +1,6 @@
 import log from "../utils/log";
-import contextMenusOnClicked from "./contextMenusOnClicked";
-import contextMenuItems from "./contextMenuItems";
+import contextMenusOnClicked from "./contextMenu/contextMenusOnClicked";
+import contextMenuItems from "./contextMenu/contextMenuItems";
 import messageType from "../messages/messageType";
 
 export type backgroundStateType = {
@@ -72,13 +72,11 @@ contextMenusOnClicked();
 // ------- send message to content script, when its tab is highlighted (activated)
 
 chrome.tabs.onHighlighted.addListener((highlightInfo: chrome.tabs.TabHighlightInfo) => {
-
     if (highlightInfo && highlightInfo.tabIds && highlightInfo.tabIds[0]) {
         chrome.tabs.sendMessage(highlightInfo.tabIds[0], {
             action: "tabHighlighted",
         }).catch((error) => {
             log.info(error) // log.ts:6 Error: Could not establish connection. Receiving end does not exist. 
         })
-
     }
 });

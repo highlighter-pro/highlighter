@@ -1,8 +1,8 @@
-import log from "../utils/log";
-import {defaultHighlightColor} from "../constants";
+import log from "../../utils/log";
+import {defaultHighlightColor} from "../../constants";
 import contextMenuItems from "./contextMenuItems";
-import messageType from "../messages/messageType";
-import {backgroundState} from "./background";
+import messageType from "../../messages/messageType";
+import {backgroundState} from "../background";
 
 const contextMenusOnClicked = () => {
 
