@@ -7,10 +7,10 @@ import keyFromUrl from "../utils/keyFromUrl";
 import storedHighlightType, {storageObjectForTabUrlType} from "../storage/typesForStorage";
 
 // https://dev.to/madv/usecontext-with-typescript-23ln
-export type contextType = {
-    value: string;
-    setValue?: (value: string) => void, // or :Function
-};
+// export type contextType = {
+//     value: string;
+//     setValue?: (value: string) => void, // or :Function
+// };
 
 export type themeType = "dark" | "light";
 export type themeContextType = {
@@ -36,7 +36,7 @@ export const ThemeContext: React.Context<themeContextType> = createContext<theme
 
 const App: React.FC = () => {
 
-    const funcName = "[App] ";
+    // const funcName = "[App] ";
     const componentId = "App";
 
     // https://react.dev/reference/react/createContext#provider
@@ -137,8 +137,8 @@ const App: React.FC = () => {
                 </TabIdContext.Provider>
             </HighlightsArrayContext.Provider>
         </ThemeContext.Provider>
-    )
-        ;
+    );
+
 };
 
 export default App;

@@ -1,8 +1,7 @@
-import log from "../../utils/log";
 import {defaultHighlightColor} from "../../constants";
 import contextMenuItems from "./contextMenuItems";
 import messageType from "../../messages/messageType";
-import {backgroundState} from "../background";
+import backgroundState from "../backgroundState";
 
 const contextMenusOnClicked = () => {
 
@@ -25,7 +24,8 @@ const contextMenusOnClicked = () => {
                         action: "highlightSelection",
                         color: defaultHighlightColor, // TODO: add 'change color' functionality
                     }).catch((error) => {
-                        log.error(error);
+                        console.error(funcName);
+                        console.error(error);
                     });
                     break;
 
@@ -34,7 +34,11 @@ const contextMenusOnClicked = () => {
                         action: "removeHighlightById",
                         highlightId: backgroundState.currentHighlightId,
                     };
-                    chrome.tabs.sendMessage(tab.id, message);
+                    chrome.tabs.sendMessage(tab.id, message)
+                        // .then(r => {
+                        //     //
+                        // })
+                        .catch(error => console.error(error));
                     break;
 
                 // case contextMenuItems.addNote.id:
@@ -57,12 +61,12 @@ const contextMenusOnClicked = () => {
                 //     break;
 
                 default:
-                    log.error("no func for " + onClickData.menuItemId);
+                    console.log("no func for " + onClickData.menuItemId);
                     break;
 
             } // end of switch
         } else {
-            log.error("(onClickData && onClickData.menuItemId && onClickData.pageUrl && tab && tab.id && tab.url) is false");
+            console.error("(onClickData && onClickData.menuItemId && onClickData.pageUrl && tab && tab.id && tab.url) is false");
         } // end of if (onClickData && onClickData.menuItemId ...)
     }); // end of chrome.contextMenus.onClicked.addListener ...
 }

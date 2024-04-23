@@ -1,4 +1,3 @@
-import log from "../utils/log";
 import keyFromUrl from "../utils/keyFromUrl";
 import removeHighlightFromStorage from "../storage/removeHighlightFromStorage";
 import removeHighlights from "./removeHighlights";
@@ -11,7 +10,8 @@ const removeHighlightById = (highlightId: string) => {
         const key = keyFromUrl(window.location.href);
         if (key) {
             // (1) remove from storage
-            removeHighlightFromStorage(key, highlightId);
+            removeHighlightFromStorage(key, highlightId)
+                .catch(error => console.log(error));
 
             // (2) remove highlight
             // https://www.w3.org/TR/2018/REC-selectors-3-20181106/#attribute-selectors
@@ -20,10 +20,10 @@ const removeHighlightById = (highlightId: string) => {
             removeHighlights(querySelector);
 
         } else {
-            log.info(funcName + "(key) is false");
+            console.log(funcName + "(key) is false");
         }
     } else {
-        log.info(funcName + "(highlightId) is false")
+        console.log(funcName + "(highlightId) is false")
     }
 };
 

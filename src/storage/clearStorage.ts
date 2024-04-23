@@ -1,5 +1,3 @@
-// import getCurrentTabUrlAsKey001 from "../sidePanel/getCurrentTabUrlAsKey.001";
-
 const clearStorage = {
 
     all: async () => {
@@ -15,12 +13,6 @@ const clearStorage = {
     key: async (key: string | string[]) => {
         return chrome.storage.local.remove(key);
     },
-
-    // currentTab: async (key: string) => {
-    //     if (key) {
-    //         await chrome.storage.local.remove(key);
-    //     }
-    // }
 
 };
 

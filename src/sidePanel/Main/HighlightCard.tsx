@@ -12,7 +12,8 @@ type highlightCardPropsType = {
 };
 
 const HighlightCard: React.FC<highlightCardPropsType> = (props) => {
-    const funcName = "[HighlightCard]";
+
+    // const funcName = "[HighlightCard]";
 
     const theme: themeType = useContext<themeContextType>(ThemeContext).value;
     const tabId = useContext(TabIdContext).tabId;
@@ -51,7 +52,8 @@ const HighlightCard: React.FC<highlightCardPropsType> = (props) => {
                                             action: "removeHighlightById",
                                             highlightId: props.highlight.id
                                         };
-                                        chrome.tabs.sendMessage(tabId, message);
+                                        chrome.tabs.sendMessage(tabId, message)
+                                            .catch(error => console.log(error));
                                     }
                                 }}
                     />
@@ -68,7 +70,8 @@ const HighlightCard: React.FC<highlightCardPropsType> = (props) => {
                                 action: "navigateToHighlightId",
                                 highlightId: props.highlight.id
                             };
-                            chrome.tabs.sendMessage(tabId, message);
+                            chrome.tabs.sendMessage(tabId, message)
+                                .catch(error => console.log(error));
                         }
                     }}>
                     {props.highlight.highlightedText}

@@ -13,8 +13,10 @@ const removeHighlightFromStorage = async (
     // https://stackoverflow.com/questions/126100/how-to-efficiently-count-the-number-of-keys-properties-of-an-object-in-javascrip
     if (Object.keys(storageObject[key]).length > 0) {
         chrome.storage.local.set(storageObject)
+            .catch(error => console.log(error));
     } else {
-        chrome.storage.local.remove(key);
+        chrome.storage.local.remove(key)
+            .catch(error => console.log(error));
     }
 
 };

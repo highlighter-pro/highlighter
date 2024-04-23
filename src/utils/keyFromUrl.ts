@@ -6,8 +6,6 @@
 * https://stackoverflow.com/a/75884674/1697878
 * */
 
-import log from "./log";
-
 const keyFromUrl = (tabUrl: URL | string | undefined) => {
 
     const funcName = "[keyFromUrl] ";
@@ -30,17 +28,12 @@ const keyFromUrl = (tabUrl: URL | string | undefined) => {
             url = tabUrl;
             key = `${url.hostname}${url.pathname}`;
         } else {
-            log.info(funcName + "tabUrl is not String or URL")
+            console.log(funcName + "tabUrl is not String or URL")
         }
         // return (url.hostname).concat(url.pathname);
     } else {
-
-        log.info(funcName + "(tabUrl) is false");
-
+        console.log(funcName + "(tabUrl) is false");
     }
-
-    // log.info(funcName + "key:");
-    // log.info(key);
 
     return key;
 

@@ -34,7 +34,15 @@ const getCurrentTab = async () => {
     //     }
     // ]
 
-    return tabs[0];
+    if (tabs && tabs.length > 0) {
+        // if (tabs.length === 1) {
+        return tabs[0];
+        // } else {
+        //     console.log("More than one tab is active"); // TODO: add code for this case
+        // }
+    } else {
+        console.log("No active tab found!");
+    }
 }
 
 export default getCurrentTab;

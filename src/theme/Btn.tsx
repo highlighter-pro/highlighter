@@ -10,14 +10,14 @@ type btnPropsType = {
     title?: string
 };
 
-type btnStyleType = {
-    normal: React.CSSProperties,
-    hover: React.CSSProperties,
-}
+// type btnStyleType = {
+//     normal: React.CSSProperties,
+//     hover: React.CSSProperties,
+// }
 
 const Btn: React.FC<btnPropsType> = (props) => {
 
-    const funcName = "[Btn] ";
+    // const funcName = "[Btn] ";
 
     // const theme = useContext(ThemeContext).value;
 

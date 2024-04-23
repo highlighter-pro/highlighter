@@ -3,6 +3,8 @@ type MessagesToContentActionsType =
     "navigateToHighlightId" |
     "removeAllHighlights" |
     "removeHighlightById" |
+    "updateHighlights" |
     "tabHighlighted" |
-    "updateHighlights"
+    "tabActivated" |
+    "tabUpdated"
 export default MessagesToContentActionsType;

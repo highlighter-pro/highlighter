@@ -3,7 +3,7 @@ source ./.env;
 
 rm -rf ./node_modules package.json package-lock.json
 npm init -y
-npm pkg set 'version'='0.0.1';
+#npm pkg set 'version'='0.0.1';
 
 # webpack
 npm install --save-dev webpack webpack-cli
@@ -32,9 +32,13 @@ npm install --save-dev typescript ts-loader
 # npm install --save-dev chrome-types
 # [@types/chrome]
 # https://www.npmjs.com/package/@types/chrome
+# https://github.com/DefinitelyTyped/DefinitelyTyped
 npm install --save-dev @types/chrome
 
 # range-serializer
+# A library for serializing and deserializing browser Range objects.
+# The code is based on the rangy library (specifically the rangy/lib/rangy-serializer module).
+# This library refactors it with modern ES syntax and TypeScript.
 # https://www.npmjs.com/package/range-serializer
 # https://github.com/qiushiyan/range-serializer
 npm install range-serializer

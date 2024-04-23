@@ -2,7 +2,6 @@ import getHighlightsFromStorage from "../storage/getHighlightsFromStorage";
 import {deserializeRange} from "range-serializer";
 import highlightRange from "./highlightRange";
 import keyFromUrl from "../utils/keyFromUrl";
-import log from "../utils/log";
 
 const markAllHighlightsOnPage = async () => {
     const funcName = "[markAllHighlightsOnPage] ";
@@ -17,8 +16,8 @@ const markAllHighlightsOnPage = async () => {
                         const range = deserializeRange(storedHighlight.rangeSerialized);
                         highlightRange(highlightId, range, storedHighlight.color, storedHighlight.note);
                     } catch (error) {
-                        log.info(funcName + "error restoring highlight " + highlightId + " on " + key + " :");
-                        log.info(error);
+                        console.log(funcName + "error restoring highlight " + highlightId + " on " + key + " :");
+                        console.log(error);
                     }
                 }
             }

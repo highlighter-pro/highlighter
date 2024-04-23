@@ -39,7 +39,8 @@ const ToggleThemeBtn: React.FC = () => {
         setMode(darkMode);
         document.body.classList.add("dark"); // < use this method
         setAppTheme(darkMode.name);
-        chrome.storage.sync.set({theme: darkMode.name});
+        chrome.storage.sync.set({theme: darkMode.name})
+            .catch(error => console.log(error));
     };
 
     const setModeToLight = () => {
@@ -47,6 +48,7 @@ const ToggleThemeBtn: React.FC = () => {
         document.body.classList.remove("dark"); // < use this method
         setAppTheme(lightMode.name);
         chrome.storage.sync.set({theme: lightMode.name})
+            .catch(error => console.log(error));
     };
 
     const toggleMode = () => {

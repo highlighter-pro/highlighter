@@ -5,7 +5,6 @@ import remarkGfm from "remark-gfm";
 import Markdown from "react-markdown";
 import Btn from "../../theme/Btn";
 import addHighlightToStorage from "../../storage/addHighlightToStorage";
-import log from "../../utils/log";
 import messageType from "../../messages/messageType";
 import getCurrentTab from "../getCurrentTab";
 
@@ -62,7 +61,6 @@ const Note: React.FC<notePropsType> = (props) => {
             }
 
             <div className={"noteButtons"}>
-
                 {editModeOn ?
                     <Btn id={"saveNoteBtn" + props.highlight.id}
                          btnText={"Save"}
@@ -70,7 +68,9 @@ const Note: React.FC<notePropsType> = (props) => {
                              if (key) {
                                  const updatedHighlight: storedHighlightType = {...props.highlight};
                                  updatedHighlight.note = noteText;
-                                 addHighlightToStorage(key, props.highlight.id, updatedHighlight);
+
+                                 addHighlightToStorage(key, props.highlight.id, updatedHighlight)
+                                     .catch(error => console.log(error));
 
                                  getCurrentTab().then((tab) => {
                                      if (tab && tab.id) {
@@ -79,16 +79,14 @@ const Note: React.FC<notePropsType> = (props) => {
                                          };
                                          return chrome.tabs.sendMessage(tab.id, message);
                                      } else {
-                                         log.info("(tab && tab.id) is false");
+                                         console.log("(tab && tab.id) is false");
                                      }
                                  }).catch((error) => {
-
-                                     log.info(error);
+                                     console.log(error);
                                  })
 
-
                              } else {
-                                 log.info(funcName + "(key) is false in saveNoteBtn");
+                                 console.log(funcName + "(key) is false in saveNoteBtn");
                              }
                              setEditModeOn(false);
                          }}/>
@@ -114,7 +112,8 @@ const Note: React.FC<notePropsType> = (props) => {
                     <Btn id={"copyNoteBtn" + props.highlight.id}
                          btnText={"Copy"}
                          onClickHandler={() => {
-                             navigator.clipboard.writeText(noteText);
+                             navigator.clipboard.writeText(noteText)
+                                 .catch(error => console.log(error));
                          }}/>
                     : null
                 }
@@ -124,21 +123,19 @@ const Note: React.FC<notePropsType> = (props) => {
                         if (key) {
                             const updatedHighlight: storedHighlightType = {...props.highlight};
                             delete updatedHighlight.note;
-                            addHighlightToStorage(key, props.highlight.id, updatedHighlight);
+                            addHighlightToStorage(key, props.highlight.id, updatedHighlight)
+                                .catch(error => console.log(error));
                         } else {
-                            log.info(funcName + "(key) is false in deleteNoteBtn");
+                            console.log(funcName + "(key) is false in deleteNoteBtn");
                         }
                     }}/>
                     : null
                 }
 
-
             </div>
-
 
         </div>
     );
-
 };
 
 export default Note;

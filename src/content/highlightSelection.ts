@@ -1,5 +1,4 @@
 import {defaultHighlightColor, markedTextClassName} from "../constants";
-import log from "../utils/log";
 import {serializeRange} from "range-serializer";
 import createRandomId from "../utils/createRandomId";
 import keyFromUrl from "../utils/keyFromUrl";
@@ -21,7 +20,7 @@ const highlightSelection = (message: messageType) => {
         const existingHighlights = document.getElementsByClassName(markedTextClassName);
         for (const existingHighlight of existingHighlights) {
             if (range.intersectsNode(existingHighlight)) {
-                log.info("selected text already highlighted"); // works
+                console.log("selected text already highlighted"); // works
                 window.alert("Some part of selected text is already highlighted");
                 doNotHighlight = true;
                 break; // <<< terminates the current loop
@@ -45,12 +44,15 @@ const highlightSelection = (message: messageType) => {
                     rangeSerialized: rangeSerialized,
                     timestamp: timestamp,
                 };
-                addHighlightToStorage(tabUrlAsKey, highlightId, highlightObj); // we do it here, not in background script
+
+                addHighlightToStorage(tabUrlAsKey, highlightId, highlightObj) // we do it here, not in background script
+                    .catch(error => console.log(error));
+
                 highlightRange(highlightId, range, color, selectedText);
             }
         }
     } else {
-        log.error("(selection && !selection.isCollapsed) is false");
+        console.error("(selection && !selection.isCollapsed) is false");
     }
 };
 

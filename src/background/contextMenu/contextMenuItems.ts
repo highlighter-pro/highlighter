@@ -33,7 +33,7 @@ const contextMenuItems: contextMenuItemsType = {
         {
             id: "deleteHighlight",
             title: "Delete highlight",
-            contexts: ["all", "link"] // 'link' is needed in addition to 'all'
+            contexts: [allContext, linkContext] // 'link' is needed in addition to 'all'
         },
 
     // addNote:

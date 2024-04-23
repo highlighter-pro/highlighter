@@ -1,12 +1,7 @@
 import {markedTextClassName} from "../constants";
-import {highlightMouseOutListenerFunc, highlightMouseOverListenerFunc} from "./highlightRange";
-import log from "../utils/log";
 import removeHighlights from "./removeHighlights";
 
 const removeAllHighlights = () => {
-
-    const funcName = "[removeAllHighlights] ";
-    // log.info(funcName + "started");
 
     // see:
     // https://www.w3.org/TR/2018/REC-selectors-3-20181106/#attribute-selectors

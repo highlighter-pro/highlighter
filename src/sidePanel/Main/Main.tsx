@@ -4,7 +4,7 @@ import HighlightCard from "./HighlightCard";
 
 const Main: React.FC = () => {
 
-    const funcName = "[Main]";
+    // const funcName = "[Main]";
 
     const id = "Main";
 
@@ -13,7 +13,11 @@ const Main: React.FC = () => {
     return (
         <main id={id}>
             {
-                highlightsArray.map((highlight, index, array) => {
+                highlightsArray.map((
+                    highlight,
+                    // index,
+                    // array
+                ) => {
                     return (
                         <HighlightCard
                             highlight={highlight}

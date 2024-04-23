@@ -1,4 +1,5 @@
 import React from "react";
+
 // see
 // https://stackoverflow.com/questions/49996456/importing-json-file-in-typescript
 import manifest from "../../../public/manifest.json";

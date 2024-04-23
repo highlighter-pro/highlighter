@@ -1,17 +1,19 @@
-import log from "../utils/log";
-import keyFromUrl from "../utils/keyFromUrl";
 import messageType from "../messages/messageType";
+import keyFromUrl from "../utils/keyFromUrl";
 import markAllHighlightsOnPage from "./markAllHighlightsOnPage";
 import removeAllHighlights from "./removeAllHighlights";
 import removeHighlightById from "./removeHighlightById";
 import highlightSelection from "./highlightSelection";
 
 const contentScriptName = "[content.ts] ";
-log.info(contentScriptName + "started"); // see 'service worker' console from extension
+
+console.info(contentScriptName + "started"); // see 'service worker' console from extension
 
 // ============================  run when markAllHighlightsOnPage() page is opened or changed
 // (1) page opened
-markAllHighlightsOnPage(); // page opened > works
+markAllHighlightsOnPage() // page opened > works
+    // .then(r => {})
+    .catch(error => console.log(error));
 
 // (2) storage changed
 // const tabUrl = window.location.href;
@@ -31,12 +33,14 @@ markAllHighlightsOnPage(); // page opened > works
 
 chrome.runtime.onMessage.addListener((
     message: messageType,
-    sender,
-    sendResponse
+    // sender: chrome.runtime.MessageSender,
+    // sendResponse
 ) => {
     // (!!!) you should use chrome.tabs.sendMessage(tabId, message); to send message to content script
     if (message && message.action) {
+
         switch (message.action) {
+
             // (1)
             case "highlightSelection":
                 highlightSelection(message);
@@ -46,7 +50,6 @@ chrome.runtime.onMessage.addListener((
             case "navigateToHighlightId":
 
                 if (message.highlightId) {
-
                     const querySelector = `*[data-highlightId='${message.highlightId}']`;
 
                     // https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
@@ -63,7 +66,7 @@ chrome.runtime.onMessage.addListener((
                         });
                     }
                 } else {
-                    log.info(contentScriptName + "navigateToHighlightId: (message.highlightId) is false");
+                    console.log(contentScriptName + "navigateToHighlightId: (message.highlightId) is false");
                 }
                 break;
 
@@ -71,7 +74,8 @@ chrome.runtime.onMessage.addListener((
             case "removeAllHighlights":
                 const key = keyFromUrl(window.location.href);
                 if (key) {
-                    chrome.storage.local.remove(key);
+                    chrome.storage.local.remove(key)
+                        .catch(error => console.log(error));
                     removeAllHighlights();
                 }
                 break;
@@ -90,7 +94,7 @@ chrome.runtime.onMessage.addListener((
                 // update all highlight spans on page
                 // TODO: check if storage changed
                 removeAllHighlights();
-                markAllHighlightsOnPage();
+                markAllHighlightsOnPage().catch(error => console.log(error));
                 break;
 
             // (6) note added
@@ -98,11 +102,11 @@ chrome.runtime.onMessage.addListener((
                 // update all highlight spans on page
                 // TODO: check if storage changed
                 removeAllHighlights();
-                markAllHighlightsOnPage();
+                markAllHighlightsOnPage().catch(error => console.log(error));
                 break;
 
             default:
-                log.error("no func for message.action: " + message.action);
+                console.error("no func for message.action: " + message.action);
                 break;
 
         } // end of switch
