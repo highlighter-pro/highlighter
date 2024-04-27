@@ -48,19 +48,20 @@ const App: React.FC = () => {
 
     // update key (from current page url) and tab id
     const updateCurrentTab = () => {
-        getCurrentTab().then(tab => {
-            if (tab) {
-                if (tab.url) {
-                    const newKey = keyFromUrl(tab.url);
-                    if (newKey !== key) {
-                        setKey(newKey);
+        getCurrentTab()
+            .then(tab => {
+                if (tab) {
+                    if (tab.url) {
+                        const newKey = keyFromUrl(tab.url);
+                        if (newKey !== key) {
+                            setKey(newKey);
+                        }
+                    }
+                    if (tab.id && tab.id !== tabId) {
+                        setTabId(tab.id);
                     }
                 }
-                if (tab.id && tab.id !== tabId) {
-                    setTabId(tab.id);
-                }
-            }
-        });
+            });
     };
 
     // update highlights array for current page url
@@ -87,12 +88,29 @@ const App: React.FC = () => {
         updateCurrentTab();
     }, []);
 
-    // (2) new tab is highlighted (activated)
+    // (2) new tab is highlighted or activated
+
+    // https://developer.chrome.com/docs/extensions/reference/api/windows#event-onFocusChanged
+    // Fired when the currently focused window changes. Returns chrome.windows.WINDOW_ID_NONE if all Chrome windows have lost focus.
+    // Note: On some Linux window managers, WINDOW_ID_NONE is always sent immediately preceding a switch from one Chrome window to another.
+    chrome.windows.onFocusChanged.addListener((
+        windowId: number // ID of the newly-focused window.
+    ) => {
+        updateCurrentTab();
+    });
+
     chrome.tabs.onHighlighted.addListener((
         // tabHighlightInfo: chrome.tabs.TabHighlightInfo,
     ) => {
         updateCurrentTab();
     });
+
+    chrome.tabs.onActivated.addListener((
+        // tabActiveInfo: TabActiveInfo
+    ) => {
+        updateCurrentTab();
+    });
+
 
     // (3) if tab is reloaded and tab url have changed
     chrome.tabs.onUpdated.addListener((

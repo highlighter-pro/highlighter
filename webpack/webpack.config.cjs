@@ -10,9 +10,10 @@ module.exports = {
     // mode: "production", // https://webpack.js.org/configuration/mode/ // TODO: change to 'production' in production
     mode: "development", // https://webpack.js.org/configuration/mode/
     // https://webpack.js.org/configuration/devtool/
+    // (none) - Recommended choice for production builds with maximum performance
     devtool: 'source-map',
     // devtool: 'cheap-module-source-map',
-    // devtool: 'eval-source-map',
+    // devtool: 'eval-source-map', // Recommended choice for development builds with high quality SourceMaps << Error
     entry: {
         background: path.resolve(__dirname, "..", "src", "background/background.ts"),
         sidePanelRoot: path.resolve(__dirname, "..", "src", "sidePanel/sidePanelRoot.tsx"),
@@ -56,4 +57,3 @@ module.exports = {
         }),
     ],
 };
-

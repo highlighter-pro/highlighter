@@ -16,7 +16,7 @@ addOnMessageListener();
 // ----- process clicks on menu items
 contextMenusOnClicked();
 
-// ------- send message to content script, when its tab is highlighted (activated)
+// ----- send message to content script, when its tab is highlighted (activated)
 detectActiveTab();
 
 

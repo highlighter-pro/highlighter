@@ -21,6 +21,10 @@ This extension does not collect any user data.
 * Your highlights and notes are saved locally with an option to save and restore a backup.
 * You can use [GitHub Flavored Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) in notes. 
 
+## Panel 
+
+Chrome can not show different Side Panel content for different windows. 
+
 ## Support
 
 [Issues](https://github.com/highlighter-pro/highlighter/issues) 

@@ -1,4 +1,4 @@
-import {defaultHighlightColor} from "../../constants";
+import {defaultHighlightColor, devMode} from "../../constants";
 import contextMenuItems from "./contextMenuItems";
 import messageType from "../../messages/messageType";
 import backgroundState from "../backgroundState";
@@ -19,6 +19,7 @@ const contextMenusOnClicked = () => {
 
             switch (onClickData.menuItemId) {
 
+                // (1) Highlight
                 case contextMenuItems.highlightAction.id:
                     chrome.tabs.sendMessage(tab.id, {
                         action: "highlightSelection",
@@ -29,6 +30,7 @@ const contextMenusOnClicked = () => {
                     });
                     break;
 
+                // (2) Delete highlight
                 case contextMenuItems.deleteHighlight.id:
                     const message: messageType = {
                         action: "removeHighlightById",
@@ -60,13 +62,13 @@ const contextMenusOnClicked = () => {
                 //         })
                 //     break;
 
+                //
                 default:
                     console.log("no func for " + onClickData.menuItemId);
                     break;
-
             } // end of switch
         } else {
-            console.error("(onClickData && onClickData.menuItemId && onClickData.pageUrl && tab && tab.id && tab.url) is false");
+            devMode ? console.error("(onClickData && onClickData.menuItemId && onClickData.pageUrl && tab && tab.id && tab.url) is false") : null;
         } // end of if (onClickData && onClickData.menuItemId ...)
     }); // end of chrome.contextMenus.onClicked.addListener ...
 }

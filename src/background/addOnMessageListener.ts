@@ -1,6 +1,7 @@
 import messageType from "../messages/messageType";
 import contextMenuItems from "./contextMenu/contextMenuItems";
 import backgroundState from "./backgroundState";
+import {devMode} from "../constants";
 
 const addOnMessageListener = () => {
 
@@ -17,7 +18,7 @@ const addOnMessageListener = () => {
                     chrome.contextMenus.create(contextMenuItems.deleteHighlight);
                     // chrome.contextMenus.create(contextMenuItems.addNote); // TODO: add this functionality
                 } catch (error) {
-                    console.error(error);
+                    devMode ? console.error(error) : null;
                 }
                 break;
 
@@ -32,7 +33,7 @@ const addOnMessageListener = () => {
                     chrome.contextMenus.remove(contextMenuItems.deleteHighlight.id as string);
                     // chrome.contextMenus.remove(contextMenuItems.addNote.id as string); // TODO: add this functionality
                 } catch (error) {
-                    console.error(error);
+                    devMode ? console.error(error) : null;
                 }
                 break;
 
