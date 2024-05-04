@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from "react";
+import {devMode} from "../constants";
 
 /*
 * see:
@@ -15,9 +16,11 @@ const RestoreBackupButton: React.FC = () => {
 
             const file = event.target.files[0];
 
-            console.info("file selected:");
-            console.info(file.name);
-            console.info(file.type);
+            if (devMode) {
+                console.info("file selected:");
+                console.info(file.name);
+                console.info(file.type);
+            }
 
             if (file.type !== 'application/json') {
                 alert('Please select a JSON file.');
@@ -42,14 +45,15 @@ const RestoreBackupButton: React.FC = () => {
             // load – no errors, reading complete.
             fileReader.onload = () => {
 
-                console.info("typeof fileReader.result:");
-                console.info(typeof fileReader.result);
-                console.info(fileReader.result);
+                if (devMode) {
+                    console.info("typeof fileReader.result:");
+                    console.info(typeof fileReader.result); // string
+                    console.info(fileReader.result); // file content
+                }
 
                 if (fileReader.result && typeof fileReader.result === "string") {
                     const str = fileReader.result;
                     try {
-
                         const json = JSON.parse(str);
 
                         // Save to storage:
@@ -60,14 +64,13 @@ const RestoreBackupButton: React.FC = () => {
                                 inputElement.value = "";
                             })
                             .catch((error) => {
-                                console.info(error)
+                                console.info(error); // <<
                             })
-
                     } catch (error) {
-                        console.log(error);
+                        console.log(error); // <<<
                     }
                 } else {
-                    console.log("(fileReader.result && typeof fileReader.result === \"string\") is false");
+                    devMode ? console.log("(fileReader.result && typeof fileReader.result === \"string\") is false") : null;
                 }
             }
         }

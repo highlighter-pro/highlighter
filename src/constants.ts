@@ -1,4 +1,5 @@
-export const devMode = true; // TODO: change in production
+// export const devMode = true; // TODO: change in production
+export const devMode = false;
 
 export const markedTextClassName = "markedText";
 

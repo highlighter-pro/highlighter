@@ -9,6 +9,7 @@
 import manifest from "../../public/manifest.json";
 
 const saveStorageToFile = () => {
+
     chrome.storage.local.get(null, // null implies all items
         (data) => {
             if (data) {
