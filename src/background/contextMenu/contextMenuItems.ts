@@ -39,9 +39,10 @@ const contextMenuItems: contextMenuItemsType = {
     // addNote:
     //     {
     //         id: "addNote",
-    //         title: "Add note",
-    //         contexts: ["all", "link"] // 'link' is needed in addition to 'all'
+    //         title: "Add/edit note",
+    //         contexts: [allContext, linkContext] // 'link' is needed in addition to 'all'
     //     },
+
 }
 
 export default contextMenuItems;

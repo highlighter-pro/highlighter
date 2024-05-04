@@ -1,6 +1,5 @@
 import {defaultHighlightColor, devMode} from "../../constants";
 import contextMenuItems from "./contextMenuItems";
-import messageType from "../../messages/messageType";
 import backgroundState from "../backgroundState";
 
 const contextMenusOnClicked = () => {
@@ -32,34 +31,24 @@ const contextMenusOnClicked = () => {
 
                 // (2) Delete highlight
                 case contextMenuItems.deleteHighlight.id:
-                    const message: messageType = {
-                        action: "removeHighlightById",
-                        highlightId: backgroundState.currentHighlightId,
-                    };
-                    chrome.tabs.sendMessage(tab.id, message)
-                        // .then(r => {
-                        //     //
-                        // })
-                        .catch(error => console.error(error));
+                    chrome.tabs.sendMessage(
+                        tab.id,
+                        {
+                            action: "removeHighlightById",
+                            highlightId: backgroundState.currentHighlightId,
+                        }
+                    ).catch(error => console.error(error));
                     break;
 
+                // (*) add note
                 // case contextMenuItems.addNote.id:
-                //     // https://developer.chrome.com/docs/extensions/reference/api/sidePanel#type-OpenOptions
-                //     const sidePanelOpenOptions: chrome.sidePanel.OpenOptions = {
-                //         tabId: tab.id,
-                //     }
-                //     chrome.sidePanel.open(sidePanelOpenOptions)
-                //         .then((result) => {
-                //             const message: messageType = {
-                //                 action: "addNote",
-                //                 highlightId: backgroundState.currentHighlightId
-                //             }
-                //             chrome.runtime.sendMessage(message);
-                //         })
-                //         .catch((error) => {
-                //             log.info(funcName + "chrome.sidePanel.open Error:");
-                //             log.info(error);
-                //         })
+                //     chrome.tabs.sendMessage(
+                //         tab.id,
+                //         {
+                //             action: "addNote",
+                //             highlightId: backgroundState.currentHighlightId,
+                //         }
+                //     ).catch(error => console.error(error));
                 //     break;
 
                 //

@@ -1,3 +1,5 @@
+import {devMode} from "../constants";
+
 const getCurrentTab = async () => {
     // const funcName = "[getCurrentTab] ";
 
@@ -41,7 +43,7 @@ const getCurrentTab = async () => {
         //     console.log("More than one tab is active"); // TODO: add code for this case
         // }
     } else {
-        console.log("No active tab found!");
+        devMode ? console.log("No active tab found!") : null; 
     }
 }
 

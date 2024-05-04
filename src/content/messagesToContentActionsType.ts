@@ -1,5 +1,6 @@
 type MessagesToContentActionsType =
     "highlightSelection" |
+    "addNote" |
     "navigateToHighlightId" |
     "removeAllHighlights" |
     "removeHighlightById" |

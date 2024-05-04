@@ -1,6 +1,6 @@
 {
   "name": "highlighter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Chrome extension: highlight text and add notes",
   "homepage": "https://highlighter.pro",
   "private": true,

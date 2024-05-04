@@ -16,7 +16,7 @@ const addOnMessageListener = () => {
                 try {
                     backgroundState.currentHighlightId = message.highlightId;
                     chrome.contextMenus.create(contextMenuItems.deleteHighlight);
-                    // chrome.contextMenus.create(contextMenuItems.addNote); // TODO: add this functionality
+                    chrome.contextMenus.create(contextMenuItems.addNote);
                 } catch (error) {
                     devMode ? console.error(error) : null;
                 }
@@ -31,7 +31,7 @@ const addOnMessageListener = () => {
                     // thus we need type assertion here
                     // https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions
                     chrome.contextMenus.remove(contextMenuItems.deleteHighlight.id as string);
-                    // chrome.contextMenus.remove(contextMenuItems.addNote.id as string); // TODO: add this functionality
+                    chrome.contextMenus.remove(contextMenuItems.addNote.id as string);
                 } catch (error) {
                     devMode ? console.error(error) : null;
                 }

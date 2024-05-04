@@ -20,14 +20,11 @@ const processMessagesToContent = () => {
 
             switch (message.action) {
 
-                // (1)
                 case "highlightSelection":
                     highlightSelection(message);
                     break;
 
-                // (2)
                 case "navigateToHighlightId":
-
                     if (message.highlightId) {
                         const querySelector = `*[data-highlightId='${message.highlightId}']`;
 
@@ -49,7 +46,6 @@ const processMessagesToContent = () => {
                     }
                     break;
 
-                // (3)
                 case "removeAllHighlights":
                     const key = keyFromUrl(window.location.href);
                     if (key) {
@@ -61,7 +57,6 @@ const processMessagesToContent = () => {
                     }
                     break;
 
-                // (4)
                 case "removeHighlightById":
                     if (message.highlightId) {
                         removeHighlightById(message.highlightId); // also removes from storage
@@ -70,17 +65,7 @@ const processMessagesToContent = () => {
                     }
                     break;
 
-                // (5) this tab is highlighted
-                case "tabHighlighted":
-                    // update all highlight spans on page
-                    // TODO: check if storage changed
-                    removeAllHighlights();
-                    markAllHighlightsOnPage().catch(error => {
-                        devMode ? console.log(error) : null;
-                    });
-                    break;
-
-                // (6) this tab is activated
+                // this tab is activated
                 // https://developer.chrome.com/docs/extensions/reference/api/tabs#event-onActivated
                 // Fires when the active tab in a window changes. Note that the tab's URL may not be set at the time this event fired,
                 // but you can listen to onUpdated events to be notified when a URL is set.
@@ -93,7 +78,7 @@ const processMessagesToContent = () => {
                     });
                     break;
 
-                //  (7) tab is updated
+                //  tab is updated
                 case "tabUpdated":
                     // update all highlight spans on page
                     removeAllHighlights();
@@ -102,7 +87,7 @@ const processMessagesToContent = () => {
                     });
                     break;
 
-                // (8) note added
+                // updateHighlights
                 case "updateHighlights":
                     // update all highlight spans on page
                     // TODO: check if storage changed

@@ -29,8 +29,8 @@ const RestoreBackupButton: React.FC = () => {
             //     return;
             // }
 
-            // https://javascript.info/file
-            //
+            // See https://javascript.info/file
+            // for File and FileReader API
             const fileReader = new FileReader();
 
             fileReader.readAsText(file);
@@ -49,15 +49,19 @@ const RestoreBackupButton: React.FC = () => {
                 if (fileReader.result && typeof fileReader.result === "string") {
                     const str = fileReader.result;
                     try {
-                        const json = JSON.parse(str);
-                        chrome.storage.local.set(json).then(() => {
-                            console.info("chrome.storage.local updated");
-                            const inputElement = document.getElementById(fileInputElementId) as HTMLInputElement;
-                            inputElement.value = "";
 
-                        }).catch((error) => {
-                            console.info(error)
-                        })
+                        const json = JSON.parse(str);
+
+                        // Save to storage:
+                        chrome.storage.local.set(json)
+                            .then(() => {
+                                console.info("chrome.storage.local updated");
+                                const inputElement = document.getElementById(fileInputElementId) as HTMLInputElement;
+                                inputElement.value = "";
+                            })
+                            .catch((error) => {
+                                console.info(error)
+                            })
 
                     } catch (error) {
                         console.log(error);

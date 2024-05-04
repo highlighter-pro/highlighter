@@ -99,18 +99,17 @@ const App: React.FC = () => {
         updateCurrentTab();
     });
 
-    chrome.tabs.onHighlighted.addListener((
-        // tabHighlightInfo: chrome.tabs.TabHighlightInfo,
-    ) => {
-        updateCurrentTab();
-    });
+    // chrome.tabs.onHighlighted.addListener((
+    //     // tabHighlightInfo: chrome.tabs.TabHighlightInfo,
+    // ) => {
+    //     updateCurrentTab();
+    // }); // TODO: check if can be removed
 
     chrome.tabs.onActivated.addListener((
         // tabActiveInfo: TabActiveInfo
     ) => {
         updateCurrentTab();
     });
-
 
     // (3) if tab is reloaded and tab url have changed
     chrome.tabs.onUpdated.addListener((
@@ -121,12 +120,12 @@ const App: React.FC = () => {
         updateCurrentTab();
     });
 
-    // (1) if url changed
+    // (4) if url changed
     useEffect(() => {
         updateHighlights()
     }, [key]);
 
-    // (2) if new highlight is added
+    // (6) if new highlight is added
     chrome.storage.local.onChanged.addListener((changes) => {
         if (key && changes[key]) {
             if (changes[key].newValue) {
