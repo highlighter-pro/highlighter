@@ -5,7 +5,9 @@ This is a Chrome extension for highlighting text on webpages and (optionally) ad
 
 It's very lightweight and very fast. It makes maximum use of the browser's built-in capabilities and does not overload pages with its own scripts.
 
-It does not transfer your highlights and notes to remote server, does not require permission to send/receive data to internet, and does not transfer any data to Internet.
+It does not transfer your highlights and notes to remote server, does not require permission to send/receive data to internet, and does not transfer any data to Internet. 
+
+See introduction [video on YouTube](https://www.youtube.com/watch?v=2SCs8qEbkGI)
 
 ## Installation 
 
