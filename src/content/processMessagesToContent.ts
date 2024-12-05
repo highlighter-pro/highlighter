@@ -5,7 +5,6 @@ import highlightSelection from "./highlightSelection";
 import keyFromUrl from "../utils/keyFromUrl";
 import removeAllHighlights from "./removeAllHighlights";
 import removeHighlightById from "./removeHighlightById";
-import markAllHighlightsOnPage from "./markAllHighlightsOnPage";
 import {devMode} from "../constants";
 
 const processMessagesToContent = () => {
@@ -68,36 +67,38 @@ const processMessagesToContent = () => {
                     break;
 
                 // this tab is activated
+                // TODO: removed in ver. 1.1.1.
                 // https://developer.chrome.com/docs/extensions/reference/api/tabs#event-onActivated
                 // Fires when the active tab in a window changes. Note that the tab's URL may not be set at the time this event fired,
                 // but you can listen to onUpdated events to be notified when a URL is set.
-                case "tabActivated":
-                    // update all highlight spans on page
-                    // TODO: check if storage changed
-                    removeAllHighlights();
-                    markAllHighlightsOnPage().catch(error => {
-                        devMode ? console.log(error) : null;
-                    });
-                    break;
+                // case "tabActivated":
+                //     // update all highlight spans on page
+                //     // TODO: check if storage changed
+                //     removeAllHighlights();
+                //     markAllHighlightsOnPage().catch(error => {
+                //         devMode ? console.log(error) : null;
+                //     });
+                //     break;
 
                 //  tab is updated
-                case "tabUpdated":
-                    // update all highlight spans on page
-                    removeAllHighlights();
-                    markAllHighlightsOnPage().catch(error => {
-                        devMode ? console.log(error) : null;
-                    });
-                    break;
+                // TODO: removed in ver. 1.1.1.
+                // case "tabUpdated":
+                //     // update all highlight spans on page
+                //     removeAllHighlights();
+                //     markAllHighlightsOnPage().catch(error => {
+                //         devMode ? console.log(error) : null;
+                //     });
+                //     break;
 
-                // updateHighlights
-                case "updateHighlights":
-                    // update all highlight spans on page
-                    // TODO: check if storage changed
-                    removeAllHighlights();
-                    markAllHighlightsOnPage().catch(error => {
-                        devMode ? console.log(error) : null;
-                    });
-                    break;
+                // TODO: removed in ver. 1.1.1.
+                // case "updateHighlights":
+                //     // update all highlight spans on page
+                //     // TODO: check if storage changed
+                //     removeAllHighlights();
+                //     markAllHighlightsOnPage().catch(error => {
+                //         devMode ? console.log(error) : null;
+                //     });
+                //     break;
 
                 default:
                     devMode ? console.error("no func for message.action: " + message.action) : null;

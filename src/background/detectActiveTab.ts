@@ -16,11 +16,12 @@ const detectActiveTab = () => {
     // > Example: select a tab, hold your Shift key, and select another tab. The last tab clicked will become the active
     // > tab for this window, but all tabs between them (including the two limit ones) are now highlighted.
 
-    chrome.tabs.onActivated.addListener((tabActiveInfo: chrome.tabs.TabActiveInfo) => {
-        if (tabActiveInfo && tabActiveInfo.tabId) {
-            sendMessageToTab(tabActiveInfo.tabId, "tabActivated");
-        }
-    });
+    // TODO: removed in ver. 1.1.1.
+    // chrome.tabs.onActivated.addListener((tabActiveInfo: chrome.tabs.TabActiveInfo) => {
+    //     if (tabActiveInfo && tabActiveInfo.tabId) {
+    //         sendMessageToTab(tabActiveInfo.tabId, "tabActivated");
+    //     }
+    // });
 
     // (2) onUpdated
     // https://developer.chrome.com/docs/extensions/reference/api/tabs#event-onUpdated
@@ -28,14 +29,15 @@ const detectActiveTab = () => {
     // It seems that the Chrome API does not support a filter (not documented at least)
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated
     //
-    chrome.tabs.onUpdated.addListener((
-        tabId: number,
-        tabChangeInfo: chrome.tabs.TabChangeInfo //
-    ) => {
-        if (tabId && tabChangeInfo && tabChangeInfo.status && tabChangeInfo.status === "complete") {
-            sendMessageToTab(tabId, "tabUpdated");
-        }
-    })
+    // TODO: removed in ver. 1.1.1.
+    // chrome.tabs.onUpdated.addListener((
+    //     tabId: number,
+    //     tabChangeInfo: chrome.tabs.TabChangeInfo //
+    // ) => {
+    //     if (tabId && tabChangeInfo && tabChangeInfo.status && tabChangeInfo.status === "complete") {
+    //         sendMessageToTab(tabId, "tabUpdated");
+    //     }
+    // })
 
     // (*) onHighlighted
     // https://developer.chrome.com/docs/extensions/reference/api/tabs#event-onHighlighted

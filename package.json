@@ -1,6 +1,6 @@
 {
-  "name": "highlighter",
-  "version": "1.1.0",
+  "name": "highlighter.pro",
+  "version": "1.1.1",
   "description": "Chrome extension: highlight text and add notes",
   "homepage": "https://highlighter.pro",
   "private": true,
@@ -8,9 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack/webpack.config.cjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "",
+  "keywords": ["chrome extension", "highlighter", "notes"],
+  "author": "Viktor Ageyev",
+  "license": "MIT",
   "devDependencies": {
     "@types/chrome": "^0.0.258",
     "copy-webpack-plugin": "^12.0.2",

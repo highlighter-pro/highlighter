@@ -5,8 +5,6 @@ import remarkGfm from "remark-gfm";
 import Markdown from "react-markdown";
 import Btn from "../../theme/Btn";
 import addHighlightToStorage from "../../storage/addHighlightToStorage";
-import messageType from "../../messages/messageType";
-import getCurrentTab from "../getCurrentTab";
 
 type notePropsType = {
     highlight: storedHighlightType,
@@ -71,22 +69,24 @@ const Note: React.FC<notePropsType> = (props) => {
 
                                  addHighlightToStorage(key, props.highlight.id, updatedHighlight)
                                      .catch(error => console.log(error));
+                                 // this trigger chrome.storage.local.onChanged in content.ts
 
-                                 getCurrentTab().then((tab) => {
-                                     if (tab && tab.id) {
-                                         const message: messageType = {
-                                             action: "updateHighlights"
-                                         };
-                                         return chrome.tabs.sendMessage(tab.id, message);
-                                     } else {
-                                         console.log("(tab && tab.id) is false");
-                                     }
-                                 }).catch((error) => {
-                                     console.log(error);
-                                 })
+                                 // TODO: removed in ver. 1.1.1.
+                                 // getCurrentTab().then((tab) => {
+                                 //     if (tab && tab.id) {
+                                 //         const message: messageType = {
+                                 //             action: "updateHighlights"
+                                 //         };
+                                 //         return chrome.tabs.sendMessage(tab.id, message);
+                                 //     } else {
+                                 //         console.log("(tab && tab.id) is false");
+                                 //     }
+                                 // }).catch((error) => {
+                                 //     console.log(error);
+                                 // })
 
                              } else {
-                                 console.log(funcName + "(key) is false in saveNoteBtn");
+                                 console.error(funcName + "(key) is false in saveNoteBtn");
                              }
                              setEditModeOn(false);
                          }}/>
