@@ -1,6 +1,6 @@
 {
   "name": "highlighter.pro",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "manifest_version": 3,
   "description": "Highlight text and add notes",
   "options_page": "options.html",
