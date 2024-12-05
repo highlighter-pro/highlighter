@@ -8,13 +8,15 @@ export function highlightMouseOverListenerFunc(this: HTMLElement) {
             action: "highlightMouseOver",
             highlightId: highlightId,
         }
-        chrome.runtime.sendMessage(message); // >> for context menu (background script)
+        chrome.runtime.sendMessage(message) // >> for context menu (background script)
+            .catch(error => console.log(error));
     }
 }
 
 export function highlightMouseOutListenerFunc() {
     const message: messageType = {action: "highlightMouseOut",};
-    chrome.runtime.sendMessage(message);
+    chrome.runtime.sendMessage(message)
+        .catch(error => console.log(error));
 }
 
 const highlightRange = (highlightId: string, range: Range, highlightColor?: string, title?: string) => {

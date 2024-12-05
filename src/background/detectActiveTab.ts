@@ -15,6 +15,7 @@ const detectActiveTab = () => {
     // > - You can have several highlighted tabs in a same window. But then all highlighted tabs are not active.
     // > Example: select a tab, hold your Shift key, and select another tab. The last tab clicked will become the active
     // > tab for this window, but all tabs between them (including the two limit ones) are now highlighted.
+
     chrome.tabs.onActivated.addListener((tabActiveInfo: chrome.tabs.TabActiveInfo) => {
         if (tabActiveInfo && tabActiveInfo.tabId) {
             sendMessageToTab(tabActiveInfo.tabId, "tabActivated");
@@ -26,6 +27,7 @@ const detectActiveTab = () => {
     // Fired when a tab is updated
     // It seems that the Chrome API does not support a filter (not documented at least)
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated
+    //
     chrome.tabs.onUpdated.addListener((
         tabId: number,
         tabChangeInfo: chrome.tabs.TabChangeInfo //

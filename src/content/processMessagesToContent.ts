@@ -1,3 +1,5 @@
+// src/content/processMessagesToContent.ts
+
 import messageType from "../messages/messageType";
 import highlightSelection from "./highlightSelection";
 import keyFromUrl from "../utils/keyFromUrl";

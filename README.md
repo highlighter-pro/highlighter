@@ -13,9 +13,12 @@ See introduction [video on YouTube](https://www.youtube.com/watch?v=2SCs8qEbkGI)
 
 ### From the Chrome Web Store
 
-To install ```highlighter.pro``` from the Chrome Web Store open this [page](https://chromewebstore.google.com/detail/highlighterpro/gpdhplhmppgenpnkfilghnjiodfmnoap) and click on [Add to Chrome] button.
+To install ```highlighter.pro``` from the Chrome Web Store open this [page](https://chromewebstore.google.com/detail/highlighterpro/gpdhplhmppgenpnkfilghnjiodfmnoap) 
+and click on [Add to Chrome] button.
 
-### From the code 
+If you have tabs already opened, you have to reload/refresh these tabs to use extension on them.
+
+### From the .zip file on GitHub
 
 Download the latest .zip file from the [releases](https://github.com/highlighter-pro/highlighter/releases) section for the code repo.
 
@@ -26,6 +29,40 @@ Go to [extensions](chrome://extensions/) page in Chrome browser.
 Turn on 'Developer mode' (in the top right corner)
 
 Click on the 'Load unpacked' button on the left right corner and choose the directory/folder where you have extracted downloaded .zip file.
+This will install extension in your browser. 
+
+If you have tabs already opened, you have to reload/refresh these tabs to use extension on them.
+
+### From the source code 
+
+You need [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/) installed on your machine. 
+
+Download source code from GitHub: 
+
+```shell
+git clone https://github.com/highlighter-pro/highlighter.git  
+```
+
+Go to downloaded folder
+
+```shell
+cd highlighter/
+```
+
+and build the extension:
+
+```shell
+npm install 
+npm run-script build 
+```
+
+This will create  ```dist``` folder with the extension production code. 
+
+Go to [extensions](chrome://extensions/) page in Chrome browser.
+
+Turn on 'Developer mode' (in the top right corner)
+
+Click on the 'Load unpacked' button on the left right corner and choose the ```dist``` folder you just created. This will install extension in your browser. If you have tabs already opened, you have to reload/refresh these tabs to use extension on them. 
 
 ## Features:
 
@@ -36,7 +73,6 @@ Click on the 'Load unpacked' button on the left right corner and choose the dire
 * Highlights and notes can be saved to a backup file and then restored on another computer on in another Chrome browser. For this use extension's options page.
 * Dark and light theme for side panel and options page. 
 * On extension's 'options' page you can remove all your highlights and notes in current browser (it's recommended to save a backup file before)
-
 
 ## How to save and restore backup 
 
@@ -51,4 +87,4 @@ It does not work on [Chrome Web Store](https://chromewebstore.google.com) websit
 
 ## Support
 
-For support: [Issues](https://github.com/highlighter-pro/highlighter/issues) 
+For support go to: [Issues](https://github.com/highlighter-pro/highlighter/issues) 
